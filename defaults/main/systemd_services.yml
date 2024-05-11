@@ -1,0 +1,10 @@
+systemd_services:
+  - name:        lock_screen
+    description: Lock screen
+    type:        forking
+    user:        lunics
+    group:       wheel
+    environments:
+      - WAYLAND_DISPLAY=wayland-1
+      - XDG_RUNTIME_DIR=/run/user/%i
+    exec_start:  /home/lunics/.config/systemd/user/lock_screen.sh

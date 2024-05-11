@@ -1,0 +1,11 @@
+[Unit]
+{% if item.description %}Description = {{ item.description }}{% endif %}
+
+[Service]
+{% if item.type  %}Type  = {{ item.type  }}{% endif %}
+{% if item.user  %}User  = {{ item.user  }}{% endif %}
+{% if item.group %}Group = {{ item.group }}{% endif %}
+{% for value in item.environments %}
+Environment = {{ value }}
+{% endfor %}
+{% if item.exec_start %}ExecStart = {{ item.exec_start }}{% endif %}
