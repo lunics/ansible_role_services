@@ -10,13 +10,16 @@
 - name: Generate systemd service files
   template:
     src:  systemd.service
-    dest: "/etc/systemd/system/{{ _item.name }}"
+    dest: "/etc/systemd/system/{{ _item.name }}.service"
     mode: "0600"
   notify: Reload systemd daemon
 
+- name: Flush handlers to discover the service
+  meta: flush_handlers
+
 - name: Start/stop systemd service
   service:
-    name:    "{{ _item.name    }}"
+    name:    "{{ _item.name    }}.service"
     state:   "{{ _item.state   }}"
     enabled: "{{ _item.enabled }}"
   when: not ansible_check_mode
