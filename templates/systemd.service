@@ -1,8 +1,10 @@
 [Unit]
 {% if item.description %}Description = {{ item.description }}{% endif %}
+{% if item.part_of %}PartOf = {{ item.part_of }}{% endif %}
 
 [Service]
 {% if item.type  %}Type  = {{ item.type  }}{% endif %}
+{% if item.bus_name  %}BusName  = {{ item.bus_name  }}{% endif %}
 {% if item.user  %}User  = {{ item.user  }}{% endif %}
 {% if item.group %}Group = {{ item.group }}{% endif %}
 {% for value in item.environments %}

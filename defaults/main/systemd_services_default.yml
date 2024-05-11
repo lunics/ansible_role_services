@@ -1,8 +1,10 @@
 systemd_services_default:
-  - name:         unknown
-    description:  false
-    type:         false
-    user:         false
-    group:        false
-    environments: false
-    exec_start:   false
+  name:         unknown
+  description:  false
+  part_of:      false
+  type:         false
+  bus_name:     false
+  user:         false
+  group:        false
+  environments: false
+  exec_start:   false
