@@ -19,3 +19,4 @@
     name:    "{{ _item.name    }}"
     state:   "{{ _item.state   }}"
     enabled: "{{ _item.enabled }}"
+  when: not ansible_check_mode
