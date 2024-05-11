@@ -1,0 +1,19 @@
+- block:
+  - name: Combine systemd_services with default values
+    set_fact:
+      _systemd_services: "{{ systemd_services_default | combine(systemd_services_default) }}"
+
+  - name: Generate systemd service files
+    template:
+      src:  systemd.service
+      dest: "/etc/systemd/system/{{ item.name }}"
+      mode: "0600"
+    loop: _systemd_services
+
+  # - name: Manage systemd service
+  #   service:
+  #     name:    httpd
+  #     state:   started
+  #     enabled: true
+
+  tags: service, services, systemd_services
