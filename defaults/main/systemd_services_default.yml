@@ -1,5 +1,7 @@
 systemd_services_default:
   name:         unknown
+  state:        started
+  enabled:      true
   description:  false
   part_of:      false
   type:         false

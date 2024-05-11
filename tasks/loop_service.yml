@@ -4,19 +4,18 @@
 
 - name: Assert systemd service type is fine
   assert:
-    that: _item.type in ["simple","notify","oneshot","forking"]
-
-- debug:
-    var: _item
+    that:
+      - _item.type in ["simple","notify","oneshot","forking"]
 
 - name: Generate systemd service files
   template:
     src:  systemd.service
     dest: "/etc/systemd/system/{{ _item.name }}"
     mode: "0600"
+  notify: Reload systemd daemon
 
-# - name: Manage systemd service
-#   service:
-#     name:    httpd
-#     state:   started
-#     enabled: true
+- name: Start/stop systemd service
+  service:
+    name:    "{{ _item.name    }}"
+    state:   "{{ _item.state   }}"
+    enabled: "{{ _item.enabled }}"
