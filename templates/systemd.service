@@ -1,13 +1,13 @@
 [Unit]
-{% if item.description %}Description = {{ item.description }}{% endif %}
-{% if item.part_of %}PartOf = {{ item.part_of }}{% endif %}
+{% if _item.description %}Description = {{ item.description }}{% endif %}
+{% if _item.part_of %}PartOf = {{ item.part_of }}{% endif %}
 
 [Service]
-{% if item.type  %}Type  = {{ item.type  }}{% endif %}
-{% if item.bus_name  %}BusName  = {{ item.bus_name  }}{% endif %}
-{% if item.user  %}User  = {{ item.user  }}{% endif %}
-{% if item.group %}Group = {{ item.group }}{% endif %}
-{% for value in item.environments %}
+{% if _item.type  %}Type  = {{ item.type  }}{% endif %}
+{% if _item.bus_name  %}BusName  = {{ item.bus_name  }}{% endif %}
+{% if _item.user  %}User  = {{ item.user  }}{% endif %}
+{% if _item.group %}Group = {{ item.group }}{% endif %}
+{% for value in _item.environments %}
 Environment = {{ value }}
 {% endfor %}
-{% if item.exec_start %}ExecStart = {{ item.exec_start }}{% endif %}
+{% if _item.exec_start %}ExecStart = {{ item.exec_start }}{% endif %}

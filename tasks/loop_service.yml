@@ -1,24 +1,22 @@
 - name: Combine systemd_services with default values
   set_fact:
-    _systemd_services: "{{ systemd_services_default | combine(item) }}"
+    _item: "{{ systemd_services_default | combine(item) }}"
 
 - name: Assert systemd service type is fine
   assert:
-    that: item.type in ["simple","notify","oneshot"]
-  loop: "{{ _systemd_services }}"
+    that: _item.type in ["simple","notify","oneshot","forking"]
 
-  # loop: _systemd_services
+- debug:
+    var: _item
 
-# - name: Generate systemd service files
-#   template:
-#     src:  systemd.service
-#     dest: "/etc/systemd/system/{{ item.name }}"
-#     mode: "0600"
-#   # with_items: _systemd_services
+- name: Generate systemd service files
+  template:
+    src:  systemd.service
+    dest: "/etc/systemd/system/{{ _item.name }}"
+    mode: "0600"
 
 # - name: Manage systemd service
 #   service:
 #     name:    httpd
 #     state:   started
 #     enabled: true
-
