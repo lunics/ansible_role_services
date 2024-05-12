@@ -10,3 +10,4 @@ systemd_services_default:
   group:        false
   environments: false
   exec_start:   false
+  wanted_by:    false

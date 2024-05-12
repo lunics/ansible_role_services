@@ -19,7 +19,7 @@
 
 - name: Start/stop systemd service
   service:
-    name:    "{{ _item.name    }}.service"
-    state:   "{{ _item.state   }}"
+    name:    "{{ _item.name }}.service"
+    state:   "{{ omit if not _item.state else _item.state  }}"   # omit if state is false else apply state value
     enabled: "{{ _item.enabled }}"
   when: not ansible_check_mode

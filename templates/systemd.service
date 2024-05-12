@@ -13,8 +13,14 @@
 {% endif -%}
 {% if _item.group %}Group = {{ _item.group }}
 {% endif -%}
+{% if _item.environments %}
 {% for value in _item.environments %}
 Environment = {{ value }}
 {% endfor %}
-{% if _item.exec_start %}ExecStart = {{ _item.exec_start }}
 {% endif -%}
+{% if _item.exec_start %}ExecStart = {{ _item.exec_start }}
+{% endif %}
+
+[Install]
+{% if _item.wanted_by %}WantedBy = {{ _item.wanted_by }}
+{% endif %}
